@@ -11,10 +11,9 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int count = 0;
-	const char *str;
 
 	va_start(args, format);
-	while (*format != '\0')
+	while (*format)
 	{
 		if (*format == '%')
 		{
@@ -26,13 +25,8 @@ int _printf(const char *format, ...)
 					count++;
 					break;
 				case 's':
-					str = va_arg(args, const char *);
-					while (*str != '\0')
-					{
-						putchar(*str);
-						str++;
-						count++;
-					}
+					putchar(*va_arg(args, const char *));
+					count++;
 					break;
 				case '%':
 					putchar('%');
