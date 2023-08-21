@@ -16,19 +16,6 @@ int _print_char(va_list args, int *count)
 	return (*count);
 }
 /**
- * _print_integer - prints int
- * @count: printed int
- * @args: aguments
- * Return: count
- */
-int _print_integer(va_list args, int *count)
-{
-	int num = va_arg(args, int);
-
-	*count += printf("%d", num);
-	return (*count);
-}
-/**
  * _print_string - prints a string
  * @count: character count
  * @args: arguments
@@ -58,9 +45,43 @@ int _print_percent(int *count)
 	return (*count);
 }
 /**
- * _printf - prints output according to a format.
+ * _handle_conversion - handles according to a format.
+ * @specifier: character string
+ * @count: character printed
+ * @args: arguments
+ * Return: count
+ */
+int _handle_conversion(va_list args, char specifier, int *count)
+{
+	switch (specifier)
+	{
+		case 'c':
+			_print_char(args, &count);
+			break;
+		case 's':
+			_print_string(args, &count);
+			break;
+		case 'd':
+		case 'i':
+			_print_integer(args, &count);
+			break;
+		case 'b':
+			_print_binary(args, &count);
+			break;
+		case '%':
+			_print_percent(&count);
+			break;
+		default:
+			putchar('%');
+			putchar(specifier);
+			count += 2;
+			break;
+	}
+}
+/**
+ * _printf - prints characters according to a format
  * @format: character string
- * @...: urguments
+ * @...: functions
  * Return: count
  */
 int _printf(const char *format, ...)
@@ -74,27 +95,7 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			switch (*format)
-			{
-				case 'c':
-					_print_char(args, &count);
-					break;
-				case 's':
-					_print_string(args, &count);
-					break;
-				case 'd':
-				case 'i':
-					_print_integer(args, &count);
-					break;
-				case '%':
-					_print_percent(&count);
-					break;
-				default:
-					putchar('%');
-					putchar(*format);
-					count += 2;
-					break;
-			}
+			_handle_conversion(args, *format, &count);
 		}
 		else
 		{

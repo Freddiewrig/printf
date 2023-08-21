@@ -6,4 +6,6 @@ int _print_char(va_list args, int *count);
 int _print_string(va_list args, int *count);
 int _print_percent(int *count);
 int _print_integer(va_list args, int *count);
+int _print_binary(va_list args, int *count);
+int _handle_conversion(va_list args, char specifier, int *count);
 #endif /* MAIN_H */
