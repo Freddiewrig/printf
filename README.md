@@ -28,8 +28,7 @@ Handle the following conversion specifier: p.
 Handle the following flag characters for non-custom conversion specifiers:          
                                                                                     
 8. Sarcasm is lost in print                                                         
-Handle the following length modifiers for non-custom conversion specifiers:         
-                                                                                    
+Handle the following length modifier or non-custom conversion specifiers:                                               
 l                                                                                   
 h                                                                                   
 Conversion specifiers to handle: d, i, u, o, x, X                                   
