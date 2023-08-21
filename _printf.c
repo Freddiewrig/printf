@@ -72,10 +72,10 @@ int _handle_conversion(va_list args, char specifier, int *count)
 			_print_octal(args, count);
 			break;
 		case 'x':
-			_print_hex(args, count);
+			_print_hex(args, count, 0);
 			break;
 		case 'X':
-			_print_hex(args, count);
+			_print_hex(args, count, 1);
 			break;
 		case 'b':
 			_print_binary(args, count);
