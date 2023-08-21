@@ -1,20 +1,59 @@
 #include "main.h"
 #include <stdarg.h>
-#include <unistd.h>
 #include <stdio.h>
-#define BUFF_SIZE 1024
-void print_buffer(char buffer[], int *buff_ind);
 /**
- * _printf - Printf function
- * @format: format.
- * Return: Printed chars.
+ * _print_char - prints characters
+ * @count: number of characters printed
+ * @args: urguments
+ * Return: count
+ */
+int _print_char(va_list args, int *count)
+{
+	int c = va_arg(args, int);
+
+	putchar(c);
+	(*count)++;
+	return (*count);
+}
+/**
+ * _print_string - prints a string
+ * @count: character count
+ * @args: arguments
+ * Return: count
+ */
+int _print_string(va_list args, int *count)
+{
+	const char *str = va_arg(args, const char *);
+
+	while (*str)
+	{
+		putchar(*str);
+		str++;
+		(*count)++;
+	}
+	return (*count);
+}
+/**
+ * _print_percent - prints percent
+ * @count: character count
+ * Return: count
+ */
+int _print_percent(int *count)
+{
+	putchar('%');
+	(*count)++;
+	return (*count);
+}
+/**
+ * _printf - prints output according to a format.
+ * @format: character string
+ * @...: urguments
+ * Return: count
  */
 int _printf(const char *format, ...)
 {
 	va_list args;
-	const char *str;
-	int count = 0, buff_ind = 0;
-	char buffer[BUFF_SIZE];
+	int count = 0;
 
 	va_start(args, format);
 	while (*format)
@@ -25,30 +64,15 @@ int _printf(const char *format, ...)
 			switch (*format)
 			{
 				case 'c':
-					print_buffer(buffer, &buff_ind);
-					putchar(va_arg(args, int));
-					count++;
+					_print_char(args, &count);
 					break;
 				case 's':
-					{
-						print_buffer(buffer, &buff_ind);
-						str = va_arg(args, const char *);
-
-						while (*str)
-						{
-							putchar(*str);
-							str++;
-							count++;
-						}
-					}
+					_print_string(args, &count);
 					break;
 				case '%':
-					print_buffer(buffer, &buff_ind);
-					putchar('%');
-					count++;
+					_print_percent(&count);
 					break;
 				default:
-					print_buffer(buffer, &buff_ind);
 					putchar('%');
 					putchar(*format);
 					count += 2;
@@ -57,26 +81,11 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			buffer[buff_ind++] = *format;
-			if (buff_ind == BUFF_SIZE)
-				print_buffer(buffer, &buff_ind);
+			putchar(*format);
 			count++;
 		}
 		format++;
 	}
-	print_buffer(buffer, &buff_ind);
 	va_end(args);
 	return (count);
-}
-/**
- * print_buffer - Prints the contents of the buffer if it exist
- * @buffer: Array of chars
- * @buff_ind: Index at which to add next char, represents the length.
- */
-void print_buffer(char buffer[], int *buff_ind)
-{
-	if (*buff_ind > 0)
-		write(1, &buffer[0], *buff_ind);
-
-	*buff_ind = 0;
 }
