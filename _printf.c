@@ -65,6 +65,18 @@ int _handle_conversion(va_list args, char specifier, int *count)
 		case 'i':
 			_print_integer(args, count);
 			break;
+		case 'u':
+			_print_unsign(args, count);
+			break;
+		case 'o':
+			_print_octal(args, count);
+			break;
+		case 'x':
+			_print_hex(args, count);
+			break;
+		case 'X':
+			_print_hex(args, count);
+			break;
 		case 'b':
 			_print_binary(args, count);
 			break;
