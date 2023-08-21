@@ -49,6 +49,7 @@ int _print_percent(int *count)
  * @specifier: character string
  * @count: character printed
  * @args: arguments
+ * Return: 0 (success)
  */
 int _handle_conversion(va_list args, char specifier, int *count)
 {

@@ -8,16 +8,16 @@
  * Return: count
  */
 int _print_binary(va_list args, int *count)
-{       
-        unsigned int num = va_arg(args, unsigned int);
-        int binary[32];
-        int index = 0;
+{
+	unsigned int num = va_arg(args, unsigned int);
+	int binary[32];
+	int index = 0;
 	int i;
-        
-        while (num > 0)
-        {       
-                binary[index] = num % 2;
-                num /= 2;
+
+	while (num > 0)
+	{
+		binary[index] = num % 2;
+		num /= 2;
 		index++;
 	}
 	if (index == 0)
