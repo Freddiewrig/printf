@@ -16,6 +16,19 @@ int _print_char(va_list args, int *count)
 	return (*count);
 }
 /**
+ * _print_integer - prints int
+ * @count: printed int
+ * @args: aguments
+ * Return: count
+ */
+int _print_integer(va_list args, int *count)
+{
+	int num = va_arg(args, int);
+
+	*count += printf("%d", num);
+	return (*count);
+}
+/**
  * _print_string - prints a string
  * @count: character count
  * @args: arguments
@@ -68,6 +81,10 @@ int _printf(const char *format, ...)
 					break;
 				case 's':
 					_print_string(args, &count);
+					break;
+				case 'd':
+				case 'i':
+					_print_integer(args, &count);
 					break;
 				case '%':
 					_print_percent(&count);
