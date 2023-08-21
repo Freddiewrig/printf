@@ -49,27 +49,26 @@ int _print_percent(int *count)
  * @specifier: character string
  * @count: character printed
  * @args: arguments
- * Return: count
  */
 int _handle_conversion(va_list args, char specifier, int *count)
 {
 	switch (specifier)
 	{
 		case 'c':
-			_print_char(args, &count);
+			_print_char(args, count);
 			break;
 		case 's':
-			_print_string(args, &count);
+			_print_string(args, count);
 			break;
 		case 'd':
 		case 'i':
-			_print_integer(args, &count);
+			_print_integer(args, count);
 			break;
 		case 'b':
-			_print_binary(args, &count);
+			_print_binary(args, count);
 			break;
 		case '%':
-			_print_percent(&count);
+			_print_percent(count);
 			break;
 		default:
 			putchar('%');
@@ -77,6 +76,7 @@ int _handle_conversion(va_list args, char specifier, int *count)
 			count += 2;
 			break;
 	}
+	return (0);
 }
 /**
  * _printf - prints characters according to a format
