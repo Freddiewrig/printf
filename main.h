@@ -13,4 +13,5 @@ void _flag_conversion(va_list args, int *count);
 void _print_unsign(va_list args, int *count);
 void _print_octal(va_list args, int *count);
 void _print_hex(va_list args, int *count, int uppercase);
+void handle_flags(char specifier, char *current_flag);
 #endif /* MAIN_H */

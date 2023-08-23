@@ -2,37 +2,20 @@
 #include <stdio.h>
 #include <stdarg.h>
 /**
- * _print_octal - sorts flag conversion
- * @args: arguments
- * @count: int printed
+ * handle_flags - gives out flags
+ * @char specifier: points out to a char
+ * @current_flag: gives out flag
  **/
-void _print_octal(va_list args, int *count)
+void handle_flags(char specifier, char *current_flag)
 {
-	 unsigned int num = va_arg(args, unsigned int);
+	char flags[3] = {'+', ' ', '#'};
 
-	 *count += printf("%#o", num);
-}
-/**
- * _print_integer - prints int
- * @args: arguments
- * @count: int printed
- * Return: count
- **/
-int _print_integer(va_list args, int *count)
-{
-	int num = va_arg(args, int);
-
-	*count += printf("% d", num);
-	return (*count);
-}
-/**
- * _print_unsign - prints unsigned int
- * @args: urguments
- * @count: number of int printed
- */
-void _print_unsign(va_list args, int *count)
-{
-	unsigned int num = va_arg(args, unsigned int);
-
-	*count += printf("%u", num);
+	for (int i = 0; i < 3; i++)
+	{
+		if (specifier == flags[i])
+		{
+			*current_flag = flags[i];
+			break;
+		}
+	}
 }
