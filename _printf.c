@@ -83,9 +83,6 @@ int _handle_conversion(va_list args, char specifier, int *count)
 		case '%':
 			_print_percent(count);
 			break;
-		case '+':
-		case ' ':
-		case '#':
 		default:
 			putchar('%');
 			putchar(specifier);

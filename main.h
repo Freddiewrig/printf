@@ -9,9 +9,7 @@ int _print_integer(va_list args, int *count);
 int _print_binary(va_list args, int *count);
 int _handle_conversion(va_list args, char specifier, int *count);
 int _print_special_char(va_list args, int *count);
-void _flag_conversion(va_list args, int *count);
 void _print_unsign(va_list args, int *count);
 void _print_octal(va_list args, int *count);
 void _print_hex(va_list args, int *count, int uppercase);
-void handle_flags(char specifier, char *current_flag);
 #endif /* MAIN_H */
