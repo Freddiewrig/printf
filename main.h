@@ -12,4 +12,5 @@ int _print_special_char(va_list args, int *count);
 void _print_unsign(va_list args, int *count);
 void _print_octal(va_list args, int *count);
 void _print_hex(va_list args, int *count, int uppercase);
+int _print_string_special(va_list args, int *count);
 #endif /* MAIN_H */
